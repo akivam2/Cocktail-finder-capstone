@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Single Cocktail</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="stylesheet" type="text/css" href="/styles/main.css">
+ 
+</head>
+<body>
+  <h1><%= drink.strDrink %></h1>
+
+  <img src="<%= drink.strDrinkThumb %>" alt="Cocktail image" style="height: 8cm; width: 8cm; border-radius: 15px;">
+
+  <p><strong>Category:</strong> <%= drink.strCategory || "" %></p>
+
+  <p class="instruction">
+    <span class="label">Instructions:</span>
+    <span class="text"><%= drink.strInstructions %></span>
+  </p>
+<p><strong>Ingredients:</strong></p>
+  <ul>
+    <% for (let i = 1; i <= 15; i++) { 
+         let ingredient = drink['strIngredient' + i];
+         let measure = drink['strMeasure' + i];
+         if (ingredient) { %>
+           <li><%= measure ? measure + " " : "" %><%= ingredient %></li>
+    <%   } 
+       } %>
+  </ul>
+  <p><a href="/">← Back</a></p>
+</body>
+
+</html>

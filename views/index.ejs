@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Cocktails</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="stylesheet" type="text/css" href="styles/main.css">
+
+</head>
+<body>
+<h1>Cocktail Finder</h1>
+
+<form action="/search" method="POST" class="search-form">
+  <input
+    type="text"
+    name="query"
+    placeholder="Search a cocktail (e.g., margarita)"
+    value="<%= query %>"
+  />
+  <button type="submit">Search</button>
+</form>
+
+<form action="/" method="GET" style="margin-top:10px;">
+  <button type="submit">Random</button>
+</form>
+<% if (error) { %>
+  <p class="error"><%= error %></p>
+<% } %>
+
+ <div class="grid">
+  <% drinks.forEach(d => { %>
+    <div class="card">
+      <% if (drinks.length === 1) { %>
+        <img src="<%= d.strDrinkThumb %>" alt="Cocktail image">
+      <% } %>
+      
+      <h3><%= d.strDrink %></h3>
+      <p><%= d.strCategory || "" %></p>
+       <a href="/drink/<%= d.idDrink %>">View id: <%= d.idDrink %></a>
+      <% if (drinks.length === 1) { %>
+          <p class="instruction">
+            <span class="label">Instructions:</span>
+            <span class="text"><%= d.strInstructions %></span>
+          </p>
+                    
+      <% } %>
+         
+    </div>
+  <% }) %>
+</div>
+</body>
+</html>
